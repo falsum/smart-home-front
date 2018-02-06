@@ -3,7 +3,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
 } from 'react-router-dom';
 import {
   Reboot,
@@ -13,18 +13,16 @@ import { withStyles } from 'material-ui/styles';
 import MainBar from './components/MainBar';
 import PageHome from './components/PageHome';
 
-const styles = theme => {
-  return {
-    main: {
-      padding: theme.spacing.unit,
-      [theme.breakpoints.up('lg')]: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        width: theme.breakpoints.width('lg'),
-      }
+const styles = theme => ({
+  main: {
+    padding: theme.spacing.unit,
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: theme.breakpoints.width('lg'),
     },
-  }
-};
+  },
+});
 
 const NotFound = () => <div>Page Not Found</div>;
 
