@@ -2,6 +2,7 @@
   "name": "smart-home-front",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "material-ui": "^1.0.0-beta.31",
     "material-ui-icons": "^1.0.0-beta.17",
