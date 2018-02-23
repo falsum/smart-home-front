@@ -5,6 +5,8 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
 import {
   Reboot,
 } from 'material-ui';
@@ -27,20 +29,22 @@ const styles = theme => ({
 const NotFound = () => <div>Page Not Found</div>;
 
 const App = props => {
-  const { classes } = props;
+  const { classes, store } = props;
   return (
-    <Router>
-      <div>
-        <Reboot />
-        <MainBar />
-        <main className={classes.main}>
-          <Switch>
-            <Route exact path="/" component={PageHome} />
-            <Route component={NotFound} />
-          </Switch>
-        </main>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div>
+          <Reboot />
+          <MainBar />
+          <main className={classes.main}>
+            <Switch>
+              <Route exact path="/" component={PageHome} />
+              <Route component={NotFound} />
+            </Switch>
+          </main>
+        </div>
+      </Router>
+    </Provider>
   );
 };
 
