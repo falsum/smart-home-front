@@ -25,6 +25,12 @@ class LoginContainer extends Component {
     loadProfile();
   }
 
+  componentDidUpdate(prevProps) {
+    if (!prevProps.didInvalidate && this.props.didInvalidate) {
+      this.props.loadProfile();
+    }
+  }
+
   render() {
     const { children, notAuthenticated, loading, classes } = this.props;
 
@@ -50,11 +56,14 @@ class LoginContainer extends Component {
 
 const mapStateToProps = state => {
   const profileStore = state[profileStorePack.name];
-  const loading = !profileStore.data || profileStorePack.loading;
+  const loading = !profileStore.data || profileStorePack.isFetching;
+  const { didInvalidate, error } = profileStore;
   const notAuthenticated = profileStore.error && profileStore.error.status === 401;
   return {
     loading,
     notAuthenticated,
+    didInvalidate,
+    error,
   };
 };
 

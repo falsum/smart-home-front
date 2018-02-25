@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
+import { loginApi, profileStorePack } from 'smart-home-store';
+import TextFieldValid from './../shared/TextFieldValid';
+import FormTextValid from './../shared/FormTextValid';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -12,9 +15,11 @@ class LoginForm extends Component {
       email: '',
       password: '',
       loading: false,
+      error: null,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onInputChange(event) {
@@ -23,18 +28,27 @@ class LoginForm extends Component {
   }
 
   onSubmit(event) {
+    const { email, password } = this.state;
+    const { invalidateProfile } = this.props;
     event.preventDefault();
+    this.setState({ loading: true, error: null });
+    loginApi.login(email, password).then(() => {
+      invalidateProfile();
+    }).catch(error => {
+      this.setState({ loading: false });
+      this.setState({ error: error.message });
+    });
   }
 
   render() {
-    const { email, password } = this.state;
+    const { loading, email, password, error } = this.state;
 
     return (
-      <form noValidate onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit}>
         <Card>
           <CardContent>
-            <Typography variant="headline">Hello!</Typography>
-            <TextField
+            <Typography variant="headline">Smart Home Login!</Typography>
+            <TextFieldValid
               id="loginFromEmail"
               name="email"
               label="Email"
@@ -45,9 +59,9 @@ class LoginForm extends Component {
               margin="normal"
               required
               type="email"
-              inputProps={{ maxLength: 100 }}
+              disabled={loading}
             />
-            <TextField
+            <TextFieldValid
               id="loginFromPassword"
               name="password"
               label="Password"
@@ -57,11 +71,12 @@ class LoginForm extends Component {
               margin="normal"
               required
               type="password"
-              inputProps={{ maxLength: 100 }}
+              disabled={loading}
             />
+            <FormTextValid error={error} />
           </CardContent>
           <CardActions>
-            <Button color="primary" variant="raised" fullWidth type="submit">Loign</Button>
+            <Button color="primary" variant="raised" fullWidth type="submit" disabled={loading}>Loign</Button>
           </CardActions>
         </Card>
       </form>
@@ -69,4 +84,8 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => ({
+  invalidateProfile: () => dispatch(profileStorePack.actionInvalidate()),
+});
+
+export default connect(null, mapDispatchToProps)(LoginForm);
