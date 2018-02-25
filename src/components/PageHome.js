@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-  Typography,
-  Paper
-} from 'material-ui';
+import Typography from 'material-ui/Typography';
+import Paper from 'material-ui/Paper';
 
 const Home = () => (
   <Paper>

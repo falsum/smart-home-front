@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  withStyles,
-} from 'material-ui';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import IconButton from 'material-ui/IconButton';
+import { withStyles } from 'material-ui/styles';
 import { Menu as MenuIcon } from 'material-ui-icons';
 
 const styles = {
