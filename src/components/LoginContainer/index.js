@@ -56,7 +56,7 @@ class LoginContainer extends Component {
 
 const mapStateToProps = state => {
   const profileStore = state[profileStorePack.name];
-  const loading = !profileStore.data || profileStorePack.isFetching;
+  const loading = !profileStore.data;
   const { didInvalidate, error } = profileStore;
   const notAuthenticated = profileStore.error && profileStore.error.status === 401;
   return {

@@ -12,6 +12,7 @@ import { withStyles } from 'material-ui/styles';
 
 import MainBar from './components/MainBar';
 import PageHome from './components/PageHome';
+import PageProfile from './components/PageProfile';
 import LoginContainer from './components/LoginContainer';
 
 const styles = theme => ({
@@ -54,6 +55,7 @@ const App = props => {
             <main className={classes.main}>
               <Switch>
                 <Route exact path="/" component={PageHome} />
+                <Route exact path="/profile" component={PageProfile} />
                 <Route component={NotFound} />
               </Switch>
             </main>
