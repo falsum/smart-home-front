@@ -1,15 +1,17 @@
 import React from 'react';
-import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui';
-
 import { withRouter } from 'react-router-dom';
 
-const styles = theme => ({
+import { intermediateFlex } from './../../styles';
+
+const styles = () => ({
   container: {
+    ...intermediateFlex,
     position: 'relative',
   },
   content: {
+    ...intermediateFlex,
     position: 'static',
   },
   loader: {
@@ -22,20 +24,11 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  loaderFixed: {
-    //backgroundColor: theme.palette.background.default,
-    position: 'fixed',
-  },
 });
 
 const Loader = props => {
-  const { full, mountLoading, children, loading, classes } = props;
+  const { mountLoading, children, loading, classes } = props;
 
-  if (!full) {
-    return null;
-  }
-
-  const loaderClassName = classnames(classes.loader, { [classes.loaderFixed]: full });
   return (
     <div className={classes.container}>
       {(mountLoading || !loading) &&
@@ -44,7 +37,7 @@ const Loader = props => {
         </div>
       }
       {!!loading &&
-        <div className={loaderClassName}>
+        <div className={classes.loader}>
           <CircularProgress />
         </div>
       }

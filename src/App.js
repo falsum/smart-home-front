@@ -15,30 +15,18 @@ import PageHome from './components/PageHome';
 import PageProfile from './components/PageProfile';
 import LoginContainer from './components/LoginContainer';
 
-const styles = theme => ({
+import { intermediateFlex } from './styles';
+
+const styles = () => ({
   '@global': {
     body: {
       display: 'flex',
       minHeight: '100vh',
       flexDirection: 'column',
     },
-    '#root': {
-      display: 'flex',
-      flexDirection: 'column',
-      flex: 1,
-    },
+    '#root': intermediateFlex,
   },
-  container: {
-    flex: 1,
-  },
-  main: {
-    padding: theme.spacing.unit,
-    [theme.breakpoints.up('lg')]: {
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      width: theme.breakpoints.width('lg'),
-    },
-  },
+  container: intermediateFlex,
 });
 
 const NotFound = () => <div>Page Not Found</div>;
@@ -52,13 +40,11 @@ const App = props => {
           <Reboot />
           <LoginContainer>
             <MainBar />
-            <main className={classes.main}>
-              <Switch>
-                <Route exact path="/" component={PageHome} />
-                <Route exact path="/profile" component={PageProfile} />
-                <Route component={NotFound} />
-              </Switch>
-            </main>
+            <Switch>
+              <Route exact path="/" component={PageHome} />
+              <Route exact path="/profile" component={PageProfile} />
+              <Route component={NotFound} />
+            </Switch>
           </LoginContainer>
         </div>
       </Router>

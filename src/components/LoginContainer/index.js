@@ -8,14 +8,12 @@ import { withStyles } from 'material-ui/styles';
 import LoginForm from './LoginForm';
 import Loader from './../shared/Loader';
 
-const styles = theme => ({
-  container: {
-    padding: theme.spacing.unit,
-    [theme.breakpoints.up('lg')]: {
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      width: theme.breakpoints.width('lg'),
-    },
+import { intermediateFlex } from './../../styles';
+
+const styles = () => ({
+  container: intermediateFlex,
+  containerLogin: {
+    flex: 1,
   },
 });
 
@@ -36,7 +34,7 @@ class LoginContainer extends Component {
 
     if (notAuthenticated) {
       return (
-        <div className={classes.container}>
+        <div className={classes.containerLogin}>
           <Grid container justify="center">
             <Grid item md={4} sm={6} xs={12}>
               <LoginForm />
@@ -47,7 +45,7 @@ class LoginContainer extends Component {
     }
 
     return (
-      <Loader loading={loading} full>
+      <Loader loading={loading}>
         {children}
       </Loader>
     );
