@@ -4,10 +4,10 @@ import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { loginApi, profileStorePack } from 'smart-home-store';
-import TextFieldValid from './../shared/TextFieldValid';
-import FormTextValid from './../shared/FormTextValid';
+import FormTextField from './../shared/FormTextField';
+import FormText from './../shared/FormText';
 
-class LoginForm extends Component {
+class FormCardLogin extends Component {
   constructor(props) {
     super(props);
 
@@ -48,7 +48,7 @@ class LoginForm extends Component {
         <Card>
           <CardContent>
             <Typography variant="headline">Smart Home Login!</Typography>
-            <TextFieldValid
+            <FormTextField
               id="loginFromEmail"
               name="email"
               label="Email"
@@ -61,7 +61,7 @@ class LoginForm extends Component {
               type="email"
               disabled={loading}
             />
-            <TextFieldValid
+            <FormTextField
               id="loginFromPassword"
               name="password"
               label="Password"
@@ -73,7 +73,7 @@ class LoginForm extends Component {
               type="password"
               disabled={loading}
             />
-            <FormTextValid error={error} />
+            <FormText error={error} />
           </CardContent>
           <CardActions>
             <Button color="primary" variant="raised" fullWidth type="submit" disabled={loading}>Loign</Button>
@@ -88,4 +88,4 @@ const mapDispatchToProps = dispatch => ({
   invalidateProfile: () => dispatch(profileStorePack.actionInvalidate()),
 });
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(null, mapDispatchToProps)(FormCardLogin);

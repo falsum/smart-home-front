@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 
-const FormTextValid = props => {
+const FormText = props => {
   const { error, children } = props;
 
   return (
@@ -15,4 +15,4 @@ const FormTextValid = props => {
   );
 };
 
-export default FormTextValid;
+export default FormText;

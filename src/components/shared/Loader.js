@@ -27,11 +27,11 @@ const styles = () => ({
 });
 
 const Loader = props => {
-  const { mountLoading, children, loading, classes } = props;
+  const { unmount, children, loading, classes } = props;
 
   return (
     <div className={classes.container}>
-      {(mountLoading || !loading) &&
+      {(!loading || !unmount) &&
         <div className={classes.content}>
           {children}
         </div>

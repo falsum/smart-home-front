@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 
-class TextFieldValid extends Component {
+class FormTextField extends Component {
   constructor(props) {
     super(props);
 
@@ -92,4 +92,4 @@ class TextFieldValid extends Component {
   }
 }
 
-export default TextFieldValid;
+export default FormTextField;

@@ -45,7 +45,7 @@ class LoginContainer extends Component {
     }
 
     return (
-      <Loader loading={loading}>
+      <Loader loading={loading} unmount>
         {children}
       </Loader>
     );
